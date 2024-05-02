@@ -2,6 +2,7 @@ import shutil
 import gradio as gr
 import os
 import fitz
+import json
 
 def get_text_percentage(file_name: str) -> float:
     """
@@ -28,9 +29,40 @@ def get_text_percentage(file_name: str) -> float:
     doc.close()
     return (total_text_area / total_page_area) if total_page_area else 0
 
+def copy_files_to_folder(files, client, invoice_type):
 
-def copy_files_to_folder(files):
-    destination_folder = 'D:\\SpaceGPT_Files\\'
+    client_value = client
+    invoice_type_value = invoice_type
+
+    # Guardar los valores en un archivo JSON
+    config = {
+        "client": client_value,
+        "invoice_type": invoice_type_value
+    }
+    with open("config.json", "w") as f:
+        json.dump(config, f)
+
+    if client == "MMJ" and invoice_type == "IMPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_MMJ_IMPO"
+    if client == "MMJ" and invoice_type == "EXPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_MMJ_EXPO"
+    if client == "EATON" and invoice_type == "IMPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_EATON_IMPO"
+    if client == "EATON" and invoice_type == "EXPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_EATON_EXPO"
+    if client == "SYSCOM" and invoice_type == "IMPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_SYSCOM_IMPO"
+    if client == "SYSCOM" and invoice_type == "EXPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_SYSCOM_EXPO"
+    if client == "ASFALTOS" and invoice_type == "IMPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_ASFALTOS_IMPO"
+    if client == "ASFALTOS" and invoice_type == "EXPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_ASFALTOS_EXPO"
+    if client == "ABISA" and invoice_type == "IMPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_ABISA_IMPO"
+    if client == "ABISA" and invoice_type == "EXPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_ABISA_EXPO"
+    
     copied_files = []
     low_text_files = []  # Para llevar un seguimiento de los archivos con menos del 10% de texto
     error_files = []  # Para llevar un seguimiento de los archivos que encontraron errores durante el procesamiento
@@ -39,7 +71,7 @@ def copy_files_to_folder(files):
         return "No se proporcionaron archivos para procesar."
 
     for file in files:
-        destination_path = os.path.join(destination_folder, os.path.basename(file.name))
+        destination_path = os.path.join(client_folder, os.path.basename(file.name))
         
         try:
             text_perc = get_text_percentage(file.name)  # Asegurarse de pasar el nombre del archivo, no el objeto de archivo
@@ -71,15 +103,18 @@ def copy_files_to_folder(files):
     return "\n".join(message_parts)
 
 
+
 if __name__ == '__main__':
-    with gr.Blocks() as ui:
+    with gr.Blocks(theme=gr.themes.Monochrome()) as ui:
         with gr.Row():
             with gr.Column():
-                gr.Markdown("Facturas Importación")
+                gr.Markdown("SpaceGPT")
+                client_dropdown = gr.Dropdown(label="Cliente", choices=["MMJ", "EATON", "SYSCOM", "ASFALTOS", "ABISA"])
+                invoice_type_dropdown = gr.Dropdown(label="Tipo de Factura", choices=["IMPO", "EXPO"])
                 file_input = gr.File(label="Subir PDF", type="filepath", file_count="multiple", file_types=["pdf"])
                 submit_button = gr.Button("Copiar Archivos")
                 output = gr.Textbox(label="Resultado")
             
-            submit_button.click(fn=copy_files_to_folder, inputs=file_input, outputs=output)
+            submit_button.click(fn=copy_files_to_folder, inputs=[file_input, client_dropdown, invoice_type_dropdown], outputs=output)
 
-    ui.launch(auth=("david.salas@sintek.com.mx", "david.salas@sintek.com.mx"),server_port=8888,server_name="0.0.0.0")
+    ui.launch(auth=("david.salas@sintek.com.mx", "david.salas@sintek.com.mx"), server_port=8888, server_name="0.0.0.0")

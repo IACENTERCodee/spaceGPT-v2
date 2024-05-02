@@ -3,7 +3,14 @@ import json
 import re
 import os 
 from dotenv import load_dotenv
+import json
 
+# Cargar los valores del archivo de configuración JSON
+with open("config.json", "r") as f:
+    config = json.load(f)
+
+global_client = config["client"]
+global_invoice_type = config["invoice_type"]
 
 def connect_db():
     """Create and return a connection to the database using environment variables."""
@@ -64,48 +71,63 @@ def insert_invoice_data(json_data):
 
             processed_data["processed"] = 0
 
-            if processed_data['e_docu'] == None:
-                processed_data['e_docu'] = "N/A"
+            # Lista de todas las columnas esperadas en la tabla de facturas
+            expected_columns = ["supplier", "buyer", "e_docu", "incoterm", "lumps", "freights"]
+
+            # Verificar y agregar columnas faltantes con valor None
+            for column in expected_columns:
+                if column not in processed_data:
+                    processed_data[column] = None
+            
+            if processed_data['freights'] == None:
+                processed_data['freights'] = 0.0
 
             # Inserta en la tabla de facturas
             invoice_data = processed_data
             cur.execute("""
-                INSERT INTO invoices (invoice_number, invoice_date, supplier, total, e_docu, incoterm, lumps, freights, rfc, processed)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+                INSERT INTO invoices (invoice_number, invoice_date, supplier, buyer, total, e_docu, incoterm, lumps, freights, rfc, processed)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
             """, (invoice_data['invoice_number'], invoice_data['invoice_date'], 
-                  invoice_data['supplier'], invoice_data['total'], 
+                  invoice_data['supplier'], invoice_data['buyer'], invoice_data['total'], 
                   invoice_data['e_docu'], invoice_data['incoterm'],
                   invoice_data['lumps'], invoice_data['freights'], 
                   invoice_data['rfc'], invoice_data['processed']))
-                  
+            # Lista de todas las columnas esperadas en la tabla de line_items
+            expected_columns = ["part_number", "unit_of_measure", 
+                                "unit_cost", "net_weight", "gross_weight", 
+                                "country_of_origin", "fraction", "rate", "brand", "model", 
+                                "serie", "po", "ref", "raw_material", "value_added"]
+
             cur.execute("SELECT IDENT_CURRENT('invoices');")
             invoice_id = cur.fetchone()[0]
 
-            # Inserta en la tabla de elementos de factura
             for item in invoice_data['items']:
-                if item['part_number'] == None:
-                    item['part_number'] = 'N/A'
-                if item['fraction'] == None:
-                    item['fraction'] = 'N/A'
-                if item['rate'] == None:
-                    item['rate'] = 'N/A'
-                if item['brand'] == None:
-                    item['brand'] = 'N/A'
-                if item['model'] == None:
-                    item['model'] = 'N/A'
-                if item['serie'] == None:
-                    item['serie'] = 'N/A'
-                if item['po'] == None:
-                    item['po'] = 'N/A'
-                if item['ref'] == None:
-                    item['ref'] = 'N/A'
+                # Verificar y agregar columnas faltantes con valor None
+                for column in expected_columns:
+                    if column not in item:
+                        item[column] = None
+                if item['unit_cost'] == None:
+                    item['unit_cost'] = 0.0
+                if item['net_weight'] == None:
+                    item['net_weight'] = 0.0
+                if item['gross_weight'] == None:
+                    item['gross_weight'] = 0.0
+                if item['raw_material'] == None:
+                    item['raw_material'] = 0.0
+                if item['value_added'] == None:
+                    item['value_added'] = 0.0
+
                 cur.execute("""
                     INSERT INTO line_items (invoice_id, part_number, description, quantity, unit_of_measure, unit_cost, 
-                            net_weight, total, gross_weight, country_of_origin, fraction, rate, brand, model, serie, po, ref)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+                                            net_weight, total, gross_weight, country_of_origin, fraction, rate, brand, model, 
+                                            serie, po, ref, raw_material, value_added)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
                 """, (invoice_id, item['part_number'], item['description'], 
-                      item['quantity'], item['unit_of_measure'], item['unit_cost'], item['net_weight'], item['total'], item['gross_weight'],
-                      item['country_of_origin'], item['fraction'], item['rate'], item['brand'], item['model'], item['serie'], item['po'], item['ref']))
+                    item['quantity'], item['unit_of_measure'], item['unit_cost'], 
+                    item['net_weight'], item['total'], item['gross_weight'],
+                    item['country_of_origin'], item['fraction'], item['rate'], 
+                    item['brand'], item['model'], item['serie'], item['po'], 
+                    item['ref'], item['raw_material'], item['value_added']))
             conn.commit()
     except pyodbc.Error as e:
         print(f"Error de SQL Server: {e}")

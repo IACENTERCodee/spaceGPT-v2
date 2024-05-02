@@ -14,37 +14,136 @@ prompts = {
         {
             "invoice_number": "str",
             "invoice_date": "str",
-            "country_of_origin": "str",
-            "supplier": "str" // not take IMPORT EXPORT LETTER, 
+            "e_docu": "str",
+            "incoterm": "str",
+            "rfc": "str",
+            "supplier": "str",
+            "buyer": "str",
+            "lumps": "int",
+            "freights": "float",
             "total": "float",
             "items": [
                 {
-                    "part_number": "str",
+                    "net_weight": "float",
+                    "gross_weight": "float",
                     "description": "str",
-                    "quantity": "int",
+                    "part_number": "str",
+                    "quantity": "float",
                     "unit_of_measure": "str",
-                    "cost": "float",
-                    "weight": "float"
+                    "country_of_origin": "str",
+                    "unit_cost": "float",
+                    "raw_material": "float",
+                    "value_added": "float",
+                    "total": "float",
+                    "fraction": "str",
+                    "rate": "str",
+                    "brand": "str",
+                    "model": "str",
+                    "serie": "str",
+                    "po": "str",
+                    "ref": "str",
                 }
             ]
         }"""
     },
-    "EAT930158UR8": {
+    "EIN0306306H6": {
         "Prompt": """
         {
             "invoice_number": "str",
             "invoice_date": "str",
-            "country_of_origin": "str",
+            "e_docu": "str",
+            "incoterm": "str",
+            "rfc": "str",
+            "supplier": "str",
+            "buyer": "str",
+            "lumps": "int",
+            "freights": "float",
+            "total": "float",
+            "items": [
+                {
+                    "net_weight": "float",
+                    "gross_weight": "float",
+                    "description": "str",
+                    "part_number": "str",
+                    "quantity": "float",
+                    "unit_of_measure": "str",
+                    "country_of_origin": "str",
+                    "unit_cost": "float",
+                    "raw_material": "float",
+                    "value_added": "float",
+                    "total": "float",
+                    "fraction": "str",
+                    "rate": "str",
+                    "brand": "str",
+                    "model": "str",
+                    "serie": "str",
+                    "po": "str",
+                    "ref": "str",
+                }
+            ]
+        }"""
+    },
+    "SSC840823JT3": {
+        "Prompt": """
+        {
+            "invoice_number": "str",
+            "invoice_date": "str",
+            "rfc": "str",
+            "buyer": "str",
+            "total": "float",
+            "items": [
+                {
+                    "description": "str",
+                    "quantity": "float",
+                    "unit_of_measure": "str",
+                    "country_of_origin": "str",
+                    "unit_cost": "float",
+                    "total": "float",
+                    "ref": "str",
+                }
+            ]
+        }"""
+    },
+    "AFR831128KX6": {
+        "Prompt": """
+        {
+            "invoice_number": "str",
+            "invoice_date": "str",
+            "rfc": "str",
+            "incoterm": "str",
             "supplier": "str",
             "total": "float",
             "items": [
                 {
-                    "part_number": "str",
                     "description": "str",
-                    "quantity": "int",
+                    "quantity": "float",
                     "unit_of_measure": "str",
-                    "cost": "float",
-                    "weight": "float"
+                    "unit_cost": "float",
+                    "total": "float"
+                }
+            ]
+        }"""
+    },
+    "AOM210617IC7": {
+        "Prompt": """
+        {
+            "invoice_number": "str",
+            "invoice_date": "str",
+            "incoterm": "str",
+            "rfc": "str",
+            "supplier": "str",
+            "lumps": "int"
+            "freights": "float",
+            "total": "float",
+            "items": [
+                {
+                    "description": "str",
+                    "part_number": "str",
+                    "quantity": "float",
+                    "unit_cost": "float",
+                    "total": "float",
+                    "model": "str",
+                    "serie": "str"
                 }
             ]
         }"""
@@ -54,17 +153,34 @@ prompts = {
         {
             "invoice_number": "str",
             "invoice_date": "str",
-            "country_of_origin": "str",
+            "e_docu": "str",
+            "incoterm": "str",
+            "rfc": "str",
             "supplier": "str",
+            "buyer": "str",
+            "lumps": "int",
+            "freights": "float",
             "total": "float",
             "items": [
                 {
-                    "part_number": "str",
+                    "net_weight": "float",
+                    "gross_weight": "float",
                     "description": "str",
-                    "quantity": "int",
+                    "part_number": "str",
+                    "quantity": "float",
                     "unit_of_measure": "str",
-                    "cost": "float",
-                    "weight": "float"
+                    "country_of_origin": "str",
+                    "unit_cost": "float",
+                    "raw_material": "float",
+                    "value_addded": "float",
+                    "total": "float",
+                    "fraction": "str",
+                    "rate": "str",
+                    "brand": "str",
+                    "model": "str",
+                    "serie": "str",
+                    "po": "str",
+                    "ref": "str",
                 }
             ]
         }"""
@@ -102,7 +218,7 @@ def search_RFC_in_text(text):
     """
     Searches for an RFC in the given text and returns the corresponding prompt if found.
     """
-    rfc_list = ["MMJ930128UR6", "EAT930128UR6"]
+    rfc_list = ["MMJ930128UR6", "EIN0306306H6", "SSC840823JT3", "AFR831128KX6", "AOM210617IC7"]
     for rfc in rfc_list:
         # Check if the RFC is found in the text
         if search_word(text, rfc):
@@ -110,7 +226,7 @@ def search_RFC_in_text(text):
             return get_prompt(rfc), rfc
     # Return the general prompt if no RFC is found
     print("RFC no encontrado")
-    return get_prompt("GENERAL"),"MMJ930128UR6"
+    return get_prompt("GENERAL"),rfc
 
 
 def num_tokens_from_string(string: str) -> int:

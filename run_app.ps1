@@ -1,6 +1,5 @@
 # Navega al directorio donde está tu entorno virtual y tu script de Python
-cd "D:\SpaceGpt\spaceGPT"
-
+cd "D:\SpaceGpt\spaceGPT v2"
 # Activa el entorno virtual
 .\env\Scripts\Activate.ps1
 

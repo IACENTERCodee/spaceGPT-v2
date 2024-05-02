@@ -7,6 +7,7 @@ from utils import reader,is_pdf_readable,convert_json_to_dataframe_invoice,conve
 import api_openai
 from db import insert_invoice_data
 import re
+
 tokens_processed = 0
 token_limit_per_minute = 90000
 
@@ -86,8 +87,19 @@ async def process_directory(directory_path):
 
     return text_results, invoices_results, items_results
 
+
 # Ejecución principal
 if __name__ == '__main__':
-    directory_path = r'D:/SpaceGPT_Files/' 
-    results = asyncio.run(process_directory(directory_path))
-    
+    directory_paths = [
+        r'D:/SpaceGpt/Files/SpaceGPT_MMJ_IMPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_MMJ_EXPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_EATON_IMPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_EATON_EXPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_SYSCOM_IMPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_SYSCOM_EXPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_ASFALTOS_IMPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_ASFALTOS_EXPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_ABISA_IMPO/'
+    ]
+    async_tasks = [process_directory(directory_path) for directory_path in directory_paths]
+    results = asyncio.run(asyncio.wait(async_tasks))    
