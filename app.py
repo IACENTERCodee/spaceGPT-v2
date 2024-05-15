@@ -35,45 +35,45 @@ def copy_files_to_folder(files, client, invoice_type):
     invoice_type_value = invoice_type
 
     if client == "MMJ" and invoice_type == "IMPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_MMJ_IMPO"
+        client_folder = "D:\SpaceGpt\Files\MMJ_IMPO"
     if client == "MMJ" and invoice_type == "EXPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_MMJ_EXPO"
+        client_folder = "D:\SpaceGpt\Files\MMJ_EXPO"
     if client == "EATON" and invoice_type == "IMPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_EATON_IMPO"
+        client_folder = "D:\SpaceGpt\Files\EATON_IMPO"
     if client == "EATON" and invoice_type == "EXPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_EATON_EXPO"
+        client_folder = "D:\SpaceGpt\Files\EATON_EXPO"
     if client == "SYSCOM" and invoice_type == "IMPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_SYSCOM_IMPO"
+        client_folder = "D:\SpaceGpt\Files\SYSCOM_IMPO"
     if client == "SYSCOM" and invoice_type == "EXPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_SYSCOM_EXPO"
+        client_folder = "D:\SpaceGpt\Files\SYSCOM_EXPO"
     if client == "ASFALTOS" and invoice_type == "IMPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_ASFALTOS_IMPO"
+        client_folder = "D:\SpaceGpt\Files\ASFALTOS_IMPO"
     if client == "ASFALTOS" and invoice_type == "EXPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_ASFALTOS_EXPO"
+        client_folder = "D:\SpaceGpt\Files\ASFALTOS_EXPO"
     if client == "HUTCHINSON" and invoice_type == "IMPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_HUTCHINSON_IMPO"
+        client_folder = "D:\SpaceGpt\Files\HUTCHINSON_IMPO"
     if client == "HUTCHINSON" and invoice_type == "EXPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_HUTCHINSON_EXPO"
+        client_folder = "D:\SpaceGpt\Files\HUTCHINSON_EXPO"
     if client == "TEGRANT" and invoice_type == "IMPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_TEGRANT_IMPO"
+        client_folder = "D:\SpaceGpt\Files\TEGRANT_IMPO"
     if client == "TEGRANT" and invoice_type == "EXPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_TEGRANT_EXPO"
+        client_folder = "D:\SpaceGpt\Files\TEGRANT_EXPO"
     if client == "LAU" and invoice_type == "IMPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_LAU_IMPO"
+        client_folder = "D:\SpaceGpt\Files\LAU_IMPO"
     if client == "LAU" and invoice_type == "EXPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_LAU_EXPO"
+        client_folder = "D:\SpaceGpt\Files\LAU_EXPO"
     if client == "JABIL" and invoice_type == "IMPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_JABIL_IMPO"
+        client_folder = "D:\SpaceGpt\Files\JABIL_IMPO"
     if client == "JABIL" and invoice_type == "EXPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_JABIL_EXPO"
+        client_folder = "D:\SpaceGpt\Files\JABIL_EXPO"
     if client == "ADIENT" and invoice_type == "IMPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_ADIENT_IMPO"
+        client_folder = "D:\SpaceGpt\Files\ADIENT_IMPO"
     if client == "ADIENT" and invoice_type == "EXPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_ADIENT_EXPO"
+        client_folder = "D:\SpaceGpt\Files\ADIENT_EXPO"
     if client == "ABISA" and invoice_type == "IMPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_ABISA_IMPO"
+        client_folder = "D:\SpaceGpt\Files\ABISA_IMPO"
     if client == "TIGHITCO" and invoice_type == "EXPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_TIGHITCO_EXPO"
+        client_folder = "D:\SpaceGpt\Files\TIGHITCO_EXPO"
 
     copied_files = []
     low_text_files = []  # Para llevar un seguimiento de los archivos con menos del 10% de texto

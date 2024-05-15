@@ -115,12 +115,12 @@ def insert_invoice_data(json_data):
 
             if invoice_data["supplier"]:
                 cur.execute("""
-                    INSERT INTO CarpetasPDF (client_name, client_id, operation_type, folder_path)
+                    INSERT INTO CarpetasPDF (client_name, invoice_id, operation_type, folder_path)
                     VALUES (?, ?, ?, ?);
                 """, (invoice_data['supplier'], invoice_id, operation_type, global_file_name))
             elif invoice_data["buyer"]:
                 cur.execute("""
-                    INSERT INTO CarpetasPDF (client_name, client_id, operation_type, folder_path)
+                    INSERT INTO CarpetasPDF (client_name, invoice_id, operation_type, folder_path)
                     VALUES (?, ?, ?, ?);
                 """, (invoice_data['buyer'], invoice_id, operation_type, global_file_name))
 
