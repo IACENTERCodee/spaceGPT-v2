@@ -8,7 +8,7 @@ from asis import submit_and_wait_for_response
 class OpenAIHelper:
     """A helper class to interact with OpenAI's API for specific tasks such as extracting information from invoices."""
 
-    def __init__(self, model="gpt-4-turbo-preview"):
+    def __init__(self, model="gpt-4-turbo"):
         """Initializes the OpenAIHelper with the specified model and API key."""
         load_dotenv()
         self.api_key = os.getenv("OPENAI_API_KEY")
@@ -30,7 +30,7 @@ class OpenAIHelper:
                     "3. There are times that the information is in the same line.")
         json_format,rfc =  search_RFC_in_text(invoice_text)
     
-        if rfc=="MMJ930128UR6" or rfc=="EIN0306306H6" or rfc=="SSC840823JT3" or rfc=="AFR831128KX6" or rfc=="AOM210617IC7":
+        if rfc in ["MMJ930128UR6", "EIN0306306H6", "SSC840823JT3", "AFR831128KX6", "AOM-210617-IC7", "HSM-000316-H84", "HSM-000316H84", "TME940420LV5", "RME040213EC5", "JTO181002378", "TLA010227C50", "ASH160921KB1"]:
             extracted_text = submit_and_wait_for_response(rfc, invoice_text)
             return  extracted_text
         responses = []
@@ -40,7 +40,7 @@ class OpenAIHelper:
                     model=self.model,
                     messages=[
                         {"role": "system", "content": "You are an assistant skilled in extracting specific information from structured documents like invoices."},
-                        {"role": "system", "content": f"Return complete data in the following format: JSON with key-value pairs. {json_format}"+ "and respect str and int types remove $ of values."},
+                        {"role": "system", "content": f"Return complete data in the following format: JSON with key-value pairs. {json_format}"+ "and respect str and int types remove $ and , of values."},
                         {"role": "user", "content": f"{prompt}\n\n{segment}"}
                     ],
                 )

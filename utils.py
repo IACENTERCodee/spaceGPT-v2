@@ -14,34 +14,34 @@ prompts = {
         {
             "invoice_number": "str",
             "invoice_date": "str",
-            "e_docu": "str",
-            "incoterm": "str",
-            "rfc": "str",
-            "supplier": "str",
+            "supplier":"str",
+            "total":"float",
+            "e_docu":"str",
+            "incoterm":"str",
+            "lumps":"float",
+            "freights":"float",
             "buyer": "str",
-            "lumps": "int",
-            "freights": "float",
-            "total": "float",
+            "rfc":"str",
             "items": [
                 {
-                    "net_weight": "float",
-                    "gross_weight": "float",
-                    "description": "str",
-                    "part_number": "str",
-                    "quantity": "float",
-                    "unit_of_measure": "str",
-                    "country_of_origin": "str",
-                    "unit_cost": "float",
-                    "raw_material": "float",
-                    "value_added": "float",
-                    "total": "float",
+                    "part_number":"str",
+                    "description":"str",
+                    "quantity":"float",
+                    "unit_of_measure":"str",
+                    "unit_cost":"float",
+                    "net_weight":"float",
+                    "total":"float",
+                    "gross_weight":"float",
+                    "raw_material":"float",
+                    "value_added":"float",
+                    "country_of_origin":"str",
                     "fraction": "str",
                     "rate": "str",
                     "brand": "str",
                     "model": "str",
                     "serie": "str",
                     "po": "str",
-                    "ref": "str",
+                    "ref": "str"
                 }
             ]
         }"""
@@ -51,34 +51,34 @@ prompts = {
         {
             "invoice_number": "str",
             "invoice_date": "str",
-            "e_docu": "str",
-            "incoterm": "str",
-            "rfc": "str",
-            "supplier": "str",
+            "supplier":"str",
+            "total":"float",
+            "e_docu":"str",
+            "incoterm":"str",
+            "lumps":"float",
+            "freights":"float",
             "buyer": "str",
-            "lumps": "int",
-            "freights": "float",
-            "total": "float",
+            "rfc":"str",
             "items": [
                 {
-                    "net_weight": "float",
-                    "gross_weight": "float",
-                    "description": "str",
-                    "part_number": "str",
-                    "quantity": "float",
-                    "unit_of_measure": "str",
-                    "country_of_origin": "str",
-                    "unit_cost": "float",
-                    "raw_material": "float",
-                    "value_added": "float",
-                    "total": "float",
+                    "part_number":"str",
+                    "description":"str",
+                    "quantity":"float",
+                    "unit_of_measure":"str",
+                    "unit_cost":"float",
+                    "net_weight":"float",
+                    "total":"float",
+                    "gross_weight":"float",
+                    "raw_material":"float",
+                    "value_added":"float",
+                    "country_of_origin":"str",
                     "fraction": "str",
                     "rate": "str",
                     "brand": "str",
                     "model": "str",
                     "serie": "str",
                     "po": "str",
-                    "ref": "str",
+                    "ref": "str"
                 }
             ]
         }"""
@@ -88,18 +88,34 @@ prompts = {
         {
             "invoice_number": "str",
             "invoice_date": "str",
-            "rfc": "str",
+            "supplier":"str",
+            "total":"float",
+            "e_docu":"str",
+            "incoterm":"str",
+            "lumps":"float",
+            "freights":"float",
             "buyer": "str",
-            "total": "float",
+            "rfc":"str",
             "items": [
                 {
-                    "description": "str",
-                    "quantity": "float",
-                    "unit_of_measure": "str",
-                    "country_of_origin": "str",
-                    "unit_cost": "float",
-                    "total": "float",
-                    "ref": "str",
+                    "part_number":"str",
+                    "description":"str",
+                    "quantity":"float",
+                    "unit_of_measure":"str",
+                    "unit_cost":"float",
+                    "net_weight":"float",
+                    "total":"float",
+                    "gross_weight":"float",
+                    "raw_material":"float",
+                    "value_added":"float",
+                    "country_of_origin":"str",
+                    "fraction": "str",
+                    "rate": "str",
+                    "brand": "str",
+                    "model": "str",
+                    "serie": "str",
+                    "po": "str",
+                    "ref": "str"
                 }
             ]
         }"""
@@ -109,41 +125,256 @@ prompts = {
         {
             "invoice_number": "str",
             "invoice_date": "str",
-            "rfc": "str",
-            "incoterm": "str",
-            "supplier": "str",
-            "total": "float",
+            "supplier":"str",
+            "total":"float",
+            "e_docu":"str",
+            "incoterm":"str",
+            "lumps":"float",
+            "freights":"float",
+            "buyer": "str",
+            "rfc":"str",
             "items": [
                 {
-                    "description": "str",
-                    "quantity": "float",
-                    "unit_of_measure": "str",
-                    "unit_cost": "float",
-                    "total": "float"
+                    "part_number":"str",
+                    "description":"str",
+                    "quantity":"float",
+                    "unit_of_measure":"str",
+                    "unit_cost":"float",
+                    "net_weight":"float",
+                    "total":"float",
+                    "gross_weight":"float",
+                    "raw_material":"float",
+                    "value_added":"float",
+                    "country_of_origin":"str",
+                    "fraction": "str",
+                    "rate": "str",
+                    "brand": "str",
+                    "model": "str",
+                    "serie": "str",
+                    "po": "str",
+                    "ref": "str"
                 }
             ]
         }"""
     },
-    "AOM210617IC7": {
+    "AOM-210617-IC7": {
         "Prompt": """
         {
             "invoice_number": "str",
             "invoice_date": "str",
-            "incoterm": "str",
-            "rfc": "str",
-            "supplier": "str",
-            "lumps": "int"
-            "freights": "float",
-            "total": "float",
+            "supplier":"str",
+            "total":"float",
+            "e_docu":"str",
+            "incoterm":"str",
+            "lumps":"float",
+            "freights":"float",
+            "buyer": "str",
+            "rfc":"str",
             "items": [
                 {
-                    "description": "str",
-                    "part_number": "str",
-                    "quantity": "float",
-                    "unit_cost": "float",
-                    "total": "float",
+                    "part_number":"str",
+                    "description":"str",
+                    "quantity":"float",
+                    "unit_of_measure":"str",
+                    "unit_cost":"float",
+                    "net_weight":"float",
+                    "total":"float",
+                    "gross_weight":"float",
+                    "raw_material":"float",
+                    "value_added":"float",
+                    "country_of_origin":"str",
+                    "fraction": "str",
+                    "rate": "str",
+                    "brand": "str",
                     "model": "str",
-                    "serie": "str"
+                    "serie": "str",
+                    "po": "str",
+                    "ref": "str"
+                }
+            ]
+        }"""
+    },
+    "HSM-000316-H84": {
+        "Prompt": """
+        {
+            "invoice_number": "str",
+            "invoice_date": "str",
+            "supplier":"str",
+            "total":"float",
+            "e_docu":"str",
+            "incoterm":"str",
+            "lumps":"float",
+            "freights":"float",
+            "buyer": "str",
+            "rfc":"str",
+            "items": [
+                {
+                    "part_number":"str",
+                    "description":"str",
+                    "quantity":"float",
+                    "unit_of_measure":"str",
+                    "unit_cost":"float",
+                    "net_weight":"float",
+                    "total":"float",
+                    "gross_weight":"float",
+                    "raw_material":"float",
+                    "value_added":"float",
+                    "country_of_origin":"str",
+                    "fraction": "str",
+                    "rate": "str",
+                    "brand": "str",
+                    "model": "str",
+                    "serie": "str",
+                    "po": "str",
+                    "ref": "str"
+                }
+            ]
+        }"""
+    },
+    "TME940420LV5": {
+        "Prompt": """
+        {
+            "invoice_number": "str",
+            "invoice_date": "str",
+            "supplier":"str",
+            "total":"float",
+            "e_docu":"str",
+            "incoterm":"str",
+            "lumps":"float",
+            "freights":"float",
+            "buyer": "str",
+            "rfc":"str",
+            "items": [
+                {
+                    "part_number":"str",
+                    "description":"str",
+                    "quantity":"float",
+                    "unit_of_measure":"str",
+                    "unit_cost":"float",
+                    "net_weight":"float",
+                    "total":"float",
+                    "gross_weight":"float",
+                    "raw_material":"float",
+                    "value_added":"float",
+                    "country_of_origin":"str",
+                    "fraction": "str",
+                    "rate": "str",
+                    "brand": "str",
+                    "model": "str",
+                    "serie": "str",
+                    "po": "str",
+                    "ref": "str"
+                }
+            ]
+        }"""
+    },
+    "DME961118TX8": {
+        "Prompt": """
+        {
+            "invoice_number": "str",
+            "invoice_date": "str",
+            "supplier":"str",
+            "total":"float",
+            "e_docu":"str",
+            "incoterm":"str",
+            "lumps":"float",
+            "freights":"float",
+            "buyer": "str",
+            "rfc":"str",
+            "items": [
+                {
+                    "part_number":"str",
+                    "description":"str",
+                    "quantity":"float",
+                    "unit_of_measure":"str",
+                    "unit_cost":"float",
+                    "net_weight":"float",
+                    "total":"float",
+                    "gross_weight":"float",
+                    "raw_material":"float",
+                    "value_added":"float",
+                    "country_of_origin":"str",
+                    "fraction": "str",
+                    "rate": "str",
+                    "brand": "str",
+                    "model": "str",
+                    "serie": "str",
+                    "po": "str",
+                    "ref": "str"
+                }
+            ]
+        }"""
+    },
+    "JTO181002378": {
+        "Prompt": """
+        {
+            "invoice_number": "str",
+            "invoice_date": "str",
+            "supplier":"str",
+            "total":"float",
+            "e_docu":"str",
+            "incoterm":"str",
+            "lumps":"float",
+            "freights":"float",
+            "buyer": "str",
+            "rfc":"str",
+            "items": [
+                {
+                    "part_number":"str",
+                    "description":"str",
+                    "quantity":"float",
+                    "unit_of_measure":"str",
+                    "unit_cost":"float",
+                    "net_weight":"float",
+                    "total":"float",
+                    "gross_weight":"float",
+                    "raw_material":"float",
+                    "value_added":"float",
+                    "country_of_origin":"str",
+                    "fraction": "str",
+                    "rate": "str",
+                    "brand": "str",
+                    "model": "str",
+                    "serie": "str",
+                    "po": "str",
+                    "ref": "str"
+                }
+            ]
+        }"""
+    },
+    "ASH160921KB1": {
+        "Prompt": """
+        {
+            "invoice_number": "str",
+            "invoice_date": "str",
+            "supplier":"str",
+            "total":"float",
+            "e_docu":"str",
+            "incoterm":"str",
+            "lumps":"float",
+            "freights":"float",
+            "buyer": "str",
+            "rfc":"str",
+            "items": [
+                {
+                    "part_number":"str",
+                    "description":"str",
+                    "quantity":"float",
+                    "unit_of_measure":"str",
+                    "unit_cost":"float",
+                    "net_weight":"float",
+                    "total":"float",
+                    "gross_weight":"float",
+                    "raw_material":"float",
+                    "value_added":"float",
+                    "country_of_origin":"str",
+                    "fraction": "str",
+                    "rate": "str",
+                    "brand": "str",
+                    "model": "str",
+                    "serie": "str",
+                    "po": "str",
+                    "ref": "str"
                 }
             ]
         }"""
@@ -153,34 +384,34 @@ prompts = {
         {
             "invoice_number": "str",
             "invoice_date": "str",
-            "e_docu": "str",
-            "incoterm": "str",
-            "rfc": "str",
-            "supplier": "str",
+            "supplier":"str",
+            "total":"float",
+            "e_docu":"str",
+            "incoterm":"str",
+            "lumps":"float",
+            "freights":"float",
             "buyer": "str",
-            "lumps": "int",
-            "freights": "float",
-            "total": "float",
+            "rfc":"str",
             "items": [
                 {
-                    "net_weight": "float",
-                    "gross_weight": "float",
-                    "description": "str",
-                    "part_number": "str",
-                    "quantity": "float",
-                    "unit_of_measure": "str",
-                    "country_of_origin": "str",
-                    "unit_cost": "float",
-                    "raw_material": "float",
-                    "value_addded": "float",
-                    "total": "float",
+                    "part_number":"str",
+                    "description":"str",
+                    "quantity":"float",
+                    "unit_of_measure":"str",
+                    "unit_cost":"float",
+                    "net_weight":"float",
+                    "total":"float",
+                    "gross_weight":"float",
+                    "raw_material":"float",
+                    "value_added":"float",
+                    "country_of_origin":"str",
                     "fraction": "str",
                     "rate": "str",
                     "brand": "str",
                     "model": "str",
                     "serie": "str",
                     "po": "str",
-                    "ref": "str",
+                    "ref": "str"
                 }
             ]
         }"""
@@ -218,7 +449,7 @@ def search_RFC_in_text(text):
     """
     Searches for an RFC in the given text and returns the corresponding prompt if found.
     """
-    rfc_list = ["MMJ930128UR6", "EIN0306306H6", "SSC840823JT3", "AFR831128KX6", "AOM210617IC7"]
+    rfc_list = ["MMJ930128UR6", "EIN0306306H6", "SSC840823JT3", "AFR831128KX6", "AOM-210617-IC7", "HSM-000316-H84", "HSM-000316H84", "TME940420LV5", "RME040213EC5", "JTO181002378", "TLA010227C50", "ASH160921KB1"]
     for rfc in rfc_list:
         # Check if the RFC is found in the text
         if search_word(text, rfc):

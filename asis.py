@@ -50,10 +50,42 @@ def submit_and_wait_for_response(rfc, question):
         elif global_client == "ASFALTOS" and global_invoice_type == "EXPO":
             print("ASFALTOS-EXPO")
             assistant_id = "asst_AGv5R8CSHoLqyLOZv5ZAnZGD"
+        elif global_client == "HUTCHINSON" and global_invoice_type == "IMPO":
+            print("HUTCHINSON-IMPO")
+            assistant_id = "asst_TeYdTu8e5HDCwS823WL4ZtBk"
+        elif global_client == "HUTCHINSON" and global_invoice_type == "EXPO":
+            print("HUTCHINSON-EXPO")
+            assistant_id = "asst_KeS0fPWWWiSKrr8lF1ON7J21"
+        elif global_client == "TEGRANT" and global_invoice_type == "IMPO":
+            print("TEGRANT-IMPO")
+            assistant_id = "asst_IEHIhJGYrDLjuPSDaLKZLnG1"
+        elif global_client == "TEGRANT" and global_invoice_type == "EXPO":
+            print("TEGRANT-EXPO")
+            assistant_id = "asst_5ZXlHjwcpk9oTJYxDoSR38QB"
+        elif global_client == "LAU" and global_invoice_type == "IMPO":
+            print("LAU-IMPO")
+            assistant_id = "asst_o7l0cRJrFLY6HV37d24V0WT0"
+        elif global_client == "LAU" and global_invoice_type == "EXPO":
+            print("LAU-EXPO")
+            assistant_id = "asst_hjL9FagSwLDSC7WiS3l0CwvL"
+        elif global_client == "JABIL" and global_invoice_type == "IMPO":
+            print("JABIL-IMPO")
+            assistant_id = "asst_Vobk3ESaXTb9UU9TuSiEpTe9"
+        elif global_client == "JABIL" and global_invoice_type == "EXPO":
+            print("JABIL-EXPO")
+            assistant_id = "asst_7VStyb86PVZv2gLBeM7jl1Zw"
+        elif global_client == "ADIENT" and global_invoice_type == "IMPO":
+            print("ADIENT-IMPO")
+            assistant_id = "asst_zb3VZ0z9rYX7JON302ve0wxo"
+        elif global_client == "ADIENT" and global_invoice_type == "EXPO":
+            print("ADIENT-EXPO")
+            assistant_id = "asst_QEeGhMoekux2rfaoblvQF7Ph"
         elif global_client == "ABISA" and global_invoice_type == "IMPO":
             print("ABISA-IMPO")
             assistant_id = "asst_XWZNf6zTX6yrbC9xDZM7Rd8X"
-
+        elif global_client == "TIGHITCO" and global_invoice_type == "EXPO":
+            print("TIGHITCO-EXPO")
+            assistant_id = "asst_rLBqgG7Nrpt0Kq0zdGD4XdJN"
 
 
         # Create a new thread

@@ -11,6 +11,12 @@ with open("config.json", "r") as f:
 
 global_client = config["client"]
 global_invoice_type = config["invoice_type"]
+global_file_name = config["file_name"]
+
+if global_invoice_type == "EXPO":
+    operation_type = 0
+else:
+    operation_type = 1
 
 def connect_db():
     """Create and return a connection to the database using environment variables."""
@@ -32,6 +38,7 @@ def connect_db():
     except Exception as e:
         print(e)
         print("Connection to database failed")
+        
 def extract_float_from_string(s):
     """Extrae el primer número flotante de una cadena."""
     if s is None:
@@ -101,7 +108,24 @@ def insert_invoice_data(json_data):
             cur.execute("SELECT IDENT_CURRENT('invoices');")
             invoice_id = cur.fetchone()[0]
 
-            for item in invoice_data['items']:
+            cur.execute("""
+                INSERT INTO Pdfs (invoice_number, invoice_id)
+                VALUES (?, ?);
+            """, (invoice_data['invoice_number'], invoice_id))
+
+            if invoice_data["supplier"]:
+                cur.execute("""
+                    INSERT INTO CarpetasPDF (client_name, client_id, operation_type, folder_path)
+                    VALUES (?, ?, ?, ?);
+                """, (invoice_data['supplier'], invoice_id, operation_type, global_file_name))
+            elif invoice_data["buyer"]:
+                cur.execute("""
+                    INSERT INTO CarpetasPDF (client_name, client_id, operation_type, folder_path)
+                    VALUES (?, ?, ?, ?);
+                """, (invoice_data['buyer'], invoice_id, operation_type, global_file_name))
+
+
+            for item in invoice_data['items']: 
                 # Verificar y agregar columnas faltantes con valor None
                 for column in expected_columns:
                     if column not in item:

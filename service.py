@@ -99,7 +99,18 @@ if __name__ == '__main__':
         r'D:/SpaceGpt/Files/SpaceGPT_SYSCOM_EXPO/',
         r'D:/SpaceGpt/Files/SpaceGPT_ASFALTOS_IMPO/',
         r'D:/SpaceGpt/Files/SpaceGPT_ASFALTOS_EXPO/',
-        r'D:/SpaceGpt/Files/SpaceGPT_ABISA_IMPO/'
+        r'D:/SpaceGpt/Files/SpaceGPT_HUTCHINSON_IMPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_HUTCHINSON_EXPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_TEGRANT_IMPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_TEGRANT_EXPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_LAU_IMPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_LAU_EXPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_JABIL_IMPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_JABIL_EXPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_ADIENT_IMPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_ADIENT_EXPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_ABISA_IMPO/',
+        r'D:/SpaceGpt/Files/SpaceGPT_TIGHITCO_EXPO/',
     ]
     async_tasks = [process_directory(directory_path) for directory_path in directory_paths]
     results = asyncio.run(asyncio.wait(async_tasks))    

@@ -34,14 +34,6 @@ def copy_files_to_folder(files, client, invoice_type):
     client_value = client
     invoice_type_value = invoice_type
 
-    # Guardar los valores en un archivo JSON
-    config = {
-        "client": client_value,
-        "invoice_type": invoice_type_value
-    }
-    with open("config.json", "w") as f:
-        json.dump(config, f)
-
     if client == "MMJ" and invoice_type == "IMPO":
         client_folder = "D:\SpaceGpt\Files\SpaceGPT_MMJ_IMPO"
     if client == "MMJ" and invoice_type == "EXPO":
@@ -58,11 +50,31 @@ def copy_files_to_folder(files, client, invoice_type):
         client_folder = "D:\SpaceGpt\Files\SpaceGPT_ASFALTOS_IMPO"
     if client == "ASFALTOS" and invoice_type == "EXPO":
         client_folder = "D:\SpaceGpt\Files\SpaceGPT_ASFALTOS_EXPO"
+    if client == "HUTCHINSON" and invoice_type == "IMPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_HUTCHINSON_IMPO"
+    if client == "HUTCHINSON" and invoice_type == "EXPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_HUTCHINSON_EXPO"
+    if client == "TEGRANT" and invoice_type == "IMPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_TEGRANT_IMPO"
+    if client == "TEGRANT" and invoice_type == "EXPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_TEGRANT_EXPO"
+    if client == "LAU" and invoice_type == "IMPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_LAU_IMPO"
+    if client == "LAU" and invoice_type == "EXPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_LAU_EXPO"
+    if client == "JABIL" and invoice_type == "IMPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_JABIL_IMPO"
+    if client == "JABIL" and invoice_type == "EXPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_JABIL_EXPO"
+    if client == "ADIENT" and invoice_type == "IMPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_ADIENT_IMPO"
+    if client == "ADIENT" and invoice_type == "EXPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_ADIENT_EXPO"
     if client == "ABISA" and invoice_type == "IMPO":
         client_folder = "D:\SpaceGpt\Files\SpaceGPT_ABISA_IMPO"
-    if client == "ABISA" and invoice_type == "EXPO":
-        client_folder = "D:\SpaceGpt\Files\SpaceGPT_ABISA_EXPO"
-    
+    if client == "TIGHITCO" and invoice_type == "EXPO":
+        client_folder = "D:\SpaceGpt\Files\SpaceGPT_TIGHITCO_EXPO"
+
     copied_files = []
     low_text_files = []  # Para llevar un seguimiento de los archivos con menos del 10% de texto
     error_files = []  # Para llevar un seguimiento de los archivos que encontraron errores durante el procesamiento
@@ -89,6 +101,15 @@ def copy_files_to_folder(files, client, invoice_type):
             print(f"Error al procesar {file.name}: {e}")
             error_files.append(os.path.basename(file.name))  # Rastrear archivos que tuvieron errores
 
+            # Guardar los valores en un archivo JSON
+    config = {
+        "client": client_value,
+        "invoice_type": invoice_type_value,
+        "file_name": copied_files[0]
+    }
+    with open("config.json", "w") as f:
+        json.dump(config, f)
+    
     # Preparando el mensaje de retorno
     message_parts = []
     if copied_files:
@@ -109,7 +130,7 @@ if __name__ == '__main__':
         with gr.Row():
             with gr.Column():
                 gr.Markdown("SpaceGPT")
-                client_dropdown = gr.Dropdown(label="Cliente", choices=["MMJ", "EATON", "SYSCOM", "ASFALTOS", "ABISA"])
+                client_dropdown = gr.Dropdown(label="Cliente", choices=["ABISA", "ADIENT", "ASFALTOS", "EATON", "HUTCHINSON", "JABIL", "LAU", "MMJ", "SYSCOM", "TEGRANT", "TIGHITCO"])
                 invoice_type_dropdown = gr.Dropdown(label="Tipo de Factura", choices=["IMPO", "EXPO"])
                 file_input = gr.File(label="Subir PDF", type="filepath", file_count="multiple", file_types=["pdf"])
                 submit_button = gr.Button("Copiar Archivos")
