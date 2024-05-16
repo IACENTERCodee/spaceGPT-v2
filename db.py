@@ -12,6 +12,7 @@ with open("config.json", "r") as f:
 global_client = config["client"]
 global_invoice_type = config["invoice_type"]
 global_file_name = config["file_name"]
+global_folder_path = config["folder_path"]
 
 if global_invoice_type == "EXPO":
     operation_type = 0
@@ -109,20 +110,9 @@ def insert_invoice_data(json_data):
             invoice_id = cur.fetchone()[0]
 
             cur.execute("""
-                INSERT INTO Pdfs (invoice_number, invoice_id)
-                VALUES (?, ?);
-            """, (invoice_data['invoice_number'], invoice_id))
-
-            if invoice_data["supplier"]:
-                cur.execute("""
-                    INSERT INTO CarpetasPDF (client_name, invoice_id, operation_type, folder_path)
-                    VALUES (?, ?, ?, ?);
-                """, (invoice_data['supplier'], invoice_id, operation_type, global_file_name))
-            elif invoice_data["buyer"]:
-                cur.execute("""
-                    INSERT INTO CarpetasPDF (client_name, invoice_id, operation_type, folder_path)
-                    VALUES (?, ?, ?, ?);
-                """, (invoice_data['buyer'], invoice_id, operation_type, global_file_name))
+                INSERT INTO pdf (invoice_id, operation_type, client_name, folder_path, file_name)
+                VALUES (?, ?, ?, ?, ?);
+            """, (invoice_id, global_invoice_type, global_client, global_folder_path, global_file_name))
 
 
             for item in invoice_data['items']: 

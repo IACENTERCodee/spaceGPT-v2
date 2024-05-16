@@ -449,7 +449,7 @@ def search_RFC_in_text(text):
     """
     Searches for an RFC in the given text and returns the corresponding prompt if found.
     """
-    rfc_list = ["MMJ930128UR6", "EIN0306306H6", "SSC840823JT3", "AFR831128KX6", "AOM-210617-IC7", "HSM-000316-H84", "HSM-000316H84", "TME940420LV5", "RME040213EC5", "JTO181002378", "TLA010227C50", "ASH160921KB1"]
+    rfc_list = ["MMJ930128UR6", "EIN0306306H6", "SSC840823JT3", "SSC - 840823 - JT3", "SSC-840823-JT3", "AFR831128KX6", "AFR 831128 KX6", "AOM-210617-IC7", "HSM000316H84", "HSM-000316-H84", "HSM-000316H84", "TME940420LV5", "RME040213EC5", "JTO181002378", "TLA010227C50", "ASH160921KB1"]
     for rfc in rfc_list:
         # Check if the RFC is found in the text
         if search_word(text, rfc):
