@@ -109,6 +109,8 @@ if __name__ == '__main__':
         r'D:/SpaceGpt/Files/JABIL_EXPO/',
         r'D:/SpaceGpt/Files/ADIENT_IMPO/',
         r'D:/SpaceGpt/Files/ADIENT_EXPO/',
+        r'D:/SpaceGpt/Files/BUSSMANN_IMPO/',
+        r'D:/SpaceGpt/Files/BUSSMANN_EXPO/',
         r'D:/SpaceGpt/Files/ABISA_IMPO/',
         r'D:/SpaceGpt/Files/TIGHITCO_EXPO/',
     ]

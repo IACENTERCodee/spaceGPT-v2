@@ -70,6 +70,10 @@ def copy_files_to_folder(files, client, invoice_type):
         client_folder = "D:\SpaceGpt\Files\ADIENT_IMPO"
     if client == "ADIENT" and invoice_type == "EXPO":
         client_folder = "D:\SpaceGpt\Files\ADIENT_EXPO"
+    if client == "BUSSMANN" and invoice_type == "IMPO":
+        client_folder = "D:\SpaceGpt\Files\BUSSMANN_IMPO"
+    if client == "BUSSMANN" and invoice_type == "EXPO":
+        client_folder = "D:\SpaceGpt\Files\BUSSMANN_EXPO"
     if client == "ABISA" and invoice_type == "IMPO":
         client_folder = "D:\SpaceGpt\Files\ABISA_IMPO"
     if client == "TIGHITCO" and invoice_type == "EXPO":
@@ -131,7 +135,7 @@ if __name__ == '__main__':
         with gr.Row():
             with gr.Column():
                 gr.Markdown("SpaceGPT")
-                client_dropdown = gr.Dropdown(label="Cliente", choices=["ABISA", "ADIENT", "ASFALTOS", "EATON", "HUTCHINSON", "JABIL", "LAU", "MMJ", "SYSCOM", "TEGRANT", "TIGHITCO"])
+                client_dropdown = gr.Dropdown(label="Cliente", choices=["ABISA", "ADIENT", "ASFALTOS", "BUSSMANN", "EATON", "HUTCHINSON", "JABIL", "LAU", "MMJ", "SYSCOM", "TEGRANT", "TIGHITCO"])
                 invoice_type_dropdown = gr.Dropdown(label="Tipo de Factura", choices=["IMPO", "EXPO"])
                 file_input = gr.File(label="Subir PDF", type="filepath", file_count="multiple", file_types=["pdf"])
                 submit_button = gr.Button("Copiar Archivos")

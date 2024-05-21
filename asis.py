@@ -80,6 +80,12 @@ def submit_and_wait_for_response(rfc, question):
         elif global_client == "ADIENT" and global_invoice_type == "EXPO":
             print("ADIENT-EXPO")
             assistant_id = "asst_QEeGhMoekux2rfaoblvQF7Ph"
+        elif global_client == "BUSSMANN" and global_invoice_type == "IMPO":
+            print("BUSSMANN-IMPO")
+            assistant_id = "asst_UpLDjLtoxba9bURT5rAabGQy"
+        elif global_client == "BUSSMANN" and global_invoice_type == "EXPO":
+            print("BUSSMANN-EXPO")
+            assistant_id = "asst_5g2BcR6xvWHly9zKppGmTjQa"
         elif global_client == "ABISA" and global_invoice_type == "IMPO":
             print("ABISA-IMPO")
             assistant_id = "asst_XWZNf6zTX6yrbC9xDZM7Rd8X"
