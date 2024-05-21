@@ -33,7 +33,8 @@ async def process_file(file):
             f.write(extracted_text)
         json_data = json.loads(extracted_text)
         if is_pdf_readable(file):
-            insert_invoice_data(json_data)
+            file_name = os.path.basename(file)
+            insert_invoice_data(json_data, file_name)
             invoices = convert_json_to_dataframe_invoice(json_data)
             items = convert_json_to_dataframe_items(json_data)
         else:

@@ -11,7 +11,6 @@ with open("config.json", "r") as f:
 
 global_client = config["client"]
 global_invoice_type = config["invoice_type"]
-global_file_name = config["file_name"]
 global_folder_path = config["folder_path"]
 
 if global_invoice_type == "EXPO":
@@ -63,7 +62,7 @@ def process_and_convert_data(data):
         return data
 
 
-def insert_invoice_data(json_data):
+def insert_invoice_data(json_data, file_name):
     """Inserta datos de factura en la base de datos."""
     if json_data is None:
         return
@@ -112,7 +111,7 @@ def insert_invoice_data(json_data):
             cur.execute("""
                 INSERT INTO pdf (invoice_id, operation_type, client_name, folder_path, file_name)
                 VALUES (?, ?, ?, ?, ?);
-            """, (invoice_id, global_invoice_type, global_client, global_folder_path, global_file_name))
+            """, (invoice_id, global_invoice_type, global_client, global_folder_path, file_name))
 
 
             for item in invoice_data['items']: 

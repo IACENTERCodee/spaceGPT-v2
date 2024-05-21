@@ -124,5 +124,4 @@ def submit_and_wait_for_response(rfc, question):
     except Exception as e:
         print(f"An error occurred: {e}")
         return None
-
-# Example usage
+    

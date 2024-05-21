@@ -109,7 +109,6 @@ def copy_files_to_folder(files, client, invoice_type):
     config = {
         "client": client_value,
         "invoice_type": invoice_type_value,
-        "file_name": copied_files[0],
         "folder_path": client_folder
     }
     with open("config.json", "w") as f:
