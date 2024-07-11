@@ -108,7 +108,7 @@ def submit_and_wait_for_response(rfc, question):
         run = client.beta.threads.runs.create(
             thread_id=thread.id,
             assistant_id=assistant_id,
-            extra_headers={"OpenAI-Beta": "assistants=v2"} 
+            # extra_headers={"OpenAI-Beta": "assistants=v2"} 
         )
 
         # Wait for the run to complete

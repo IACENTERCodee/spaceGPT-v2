@@ -86,18 +86,24 @@ def copy_files_to_folder(files, client, invoice_type):
     if not files:  # Verificar si la lista de archivos está vacía
         return "No se proporcionaron archivos para procesar."
 
-    for file in files:
-        destination_path = os.path.join(client_folder, os.path.basename(file.name))
-        
+    for file in files:        
         try:
             text_perc = get_text_percentage(file.name)  # Asegurarse de pasar el nombre del archivo, no el objeto de archivo
-            print(f"Porcentaje de texto en {file.name}: {text_perc * 100:.2f}%")
-            if text_perc > 0.01:
+            print(f"Porcentaje de texto {text_perc} en {file.name}: {text_perc * 100:.2f}%")
+            if text_perc >= 1.0:
+                new_filename = os.path.splitext(os.path.basename(file.name))[0] + ".err"
+                destination_path = os.path.join(client_folder, new_filename)
                 shutil.copy(file.name, destination_path)
-                copied_files.append(os.path.basename(file.name))  # Guardar solo el nombre del archivo para mayor legibilidad
-            elif text_perc > 0.1:
+                error_files.append(new_filename)
+                print("El archivo fue detectado como escaneado.")
+            elif text_perc >= 0.70:
                 low_text_files.append(os.path.basename(file.name))
                 print("El archivo tiene algo de texto pero principalmente imágenes/escaneado.")
+            elif text_perc >= 0.01:
+                destination_path = os.path.join(client_folder, os.path.basename(file.name))
+                shutil.copy(file.name, destination_path)
+                copied_files.append(os.path.basename(file.name))  # Guardar solo el nombre del archivo para mayor legibilidad
+                print("El archivo fue procesado correctamente.")
             else:
                 print("El archivo contiene contenido de texto significativo.")
             
@@ -116,12 +122,12 @@ def copy_files_to_folder(files, client, invoice_type):
     
     # Preparando el mensaje de retorno
     message_parts = []
+    if error_files:
+        message_parts.append(f"Archivos con errores: {', '.join(error_files)}")
     if copied_files:
         message_parts.append(f"Archivos copiados: {', '.join(copied_files)}")
     if low_text_files:
         message_parts.append(f"Archivos con menos del 10% de texto (no copiados, pero se necesita revisión): {', '.join(low_text_files)}")
-    if error_files:
-        message_parts.append(f"Archivos con errores: {', '.join(error_files)}")
     if not message_parts:
         message_parts.append("Ningún archivo cumplió con los criterios para ser copiado o revisado especialmente.")
 

@@ -8,7 +8,7 @@ from asis import submit_and_wait_for_response
 class OpenAIHelper:
     """A helper class to interact with OpenAI's API for specific tasks such as extracting information from invoices."""
 
-    def __init__(self, model="gpt-4o"):
+    def __init__(self, model="gpt-4-turbo"):
         """Initializes the OpenAIHelper with the specified model and API key."""
         load_dotenv()
         self.api_key = os.getenv("OPENAI_API_KEY")
