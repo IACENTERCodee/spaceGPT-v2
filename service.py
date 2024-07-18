@@ -9,21 +9,25 @@ from db import insert_invoice_data
 import re
 
 tokens_processed = 0
-token_limit_per_minute = 90000
+token_limit_per_minute = 600000
 
 # Función para procesar un archivo individual
 async def process_file(file):
     global tokens_processed
 
+    # Obtienes el texto de PDF y la cantidad de tokens
     text, numTokens = reader(file) 
-    
+
+
     if tokens_processed + numTokens > token_limit_per_minute:
         await asyncio.sleep(60 - time.time() % 60)
         tokens_processed = 0
 
+
     tokens_processed += numTokens
+    print("Prompt tokens: ", numTokens)
     OpenAIHelper = api_openai.OpenAIHelper()
-    extracted_text = await OpenAIHelper.extract_fields_from_invoice(text, numTokens)
+    extracted_text = await OpenAIHelper.extract_fields_from_invoice(text)
     if extracted_text is not None:
         match = re.search(r'\{.*\}', extracted_text, re.DOTALL)
         if match:

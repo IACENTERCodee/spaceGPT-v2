@@ -23,7 +23,7 @@ def wait_on_run(run, thread):
         time.sleep(0.5)
     return run
 
-def submit_and_wait_for_response(rfc, question):
+def submit_and_wait_for_response(question):
     try:
         # Retrieve an existing assistant by ID
         if global_client == "MMJ" and global_invoice_type == "IMPO":
@@ -93,7 +93,6 @@ def submit_and_wait_for_response(rfc, question):
             print("TIGHITCO-EXPO")
             assistant_id = "asst_rLBqgG7Nrpt0Kq0zdGD4XdJN"
 
-
         # Create a new thread
         thread = client.beta.threads.create()
 
@@ -107,12 +106,12 @@ def submit_and_wait_for_response(rfc, question):
         # Execute the thread with the specified assistant
         run = client.beta.threads.runs.create(
             thread_id=thread.id,
-            assistant_id=assistant_id,
+            assistant_id=assistant_id
             # extra_headers={"OpenAI-Beta": "assistants=v2"} 
         )
 
         # Wait for the run to complete
-        run = wait_on_run(run, thread)
+        wait_on_run(run, thread)
 
         # Get the response from the assistant
         messages = client.beta.threads.messages.list(thread_id=thread.id)

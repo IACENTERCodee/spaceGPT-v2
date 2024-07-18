@@ -38,28 +38,6 @@ def connect_db():
     except Exception as e:
         print(e)
         print("Connection to database failed")
-        
-def extract_float_from_string(s):
-    """Extrae el primer número flotante de una cadena."""
-    if s is None:
-        return 0.0
-    if isinstance(s, float):
-        return s
-    if isinstance(s, int):
-        return float(s)
-    
-    matches = re.findall(r"[-+]?\d*\.\d+|\d+", s)
-    return float(matches[0]) if matches else 0.0
-
-def convert_to_single_value(value):
-    """Convierte una lista a un solo valor o devuelve el valor si no es una lista."""
-    if isinstance(value, list):
-        return value[0] if value else None
-    return value
-
-def process_and_convert_data(data):
-    
-        return data
 
 
 def insert_invoice_data(json_data, file_name):
@@ -74,7 +52,7 @@ def insert_invoice_data(json_data, file_name):
         with conn:
             cur = conn.cursor()
             # Procesa y convierte los datos del JSON
-            processed_data = process_and_convert_data(json_data)
+            processed_data = json_data
 
             processed_data["processed"] = 0
 
